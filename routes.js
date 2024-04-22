@@ -18,6 +18,19 @@ router.get("/", async function(req, res, next) {
   }
 });
 
+/** Get a list of customers matching the search name */
+router.post("/search", async function(req, res, next) {
+  try {
+    console.log("inside search", req.body);
+    const { customerName } = req.body;
+    console.log(customerName);
+    const customers = await Customer.all(customerName);
+    return res.render("customer_list.html", { customers });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 /** Form to add a new customer. */
 
 router.get("/add/", async function(req, res, next) {

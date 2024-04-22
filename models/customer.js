@@ -16,7 +16,7 @@ class Customer {
 
   /** find all customers. */
 
-  static async all() {
+  static async all(fullName=" ") {
     const results = await db.query(
       `SELECT id, 
          first_name AS "firstName",  
@@ -26,7 +26,12 @@ class Customer {
        FROM customers
        ORDER BY last_name, first_name`
     );
-    return results.rows.map(c => new Customer(c));
+    const customers = results.rows.map(c => new Customer(c));
+    const regex = new RegExp(`.*${fullName}.*`);
+    const filtered = customers.filter(c => regex.test(c.fullName()));
+    console.log('Regex', regex)
+    console.log("In Customer.all()", filtered);
+    return filtered;
   }
 
   /** get a customer by ID. */
