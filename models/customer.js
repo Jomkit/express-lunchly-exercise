@@ -5,6 +5,18 @@ const Reservation = require("./reservation");
 
 /** Customer of the restaurant. */
 
+// Before turning notes into a getter/setter
+// class Customer {
+//   constructor({ id, firstName, lastName, numReserv, phone, notes }) {
+//     this.id = id;
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.numReserv = numReserv;
+//     this.phone = phone;
+//     this.notes = notes;
+//   }
+
+// Notes as getter/setter
 class Customer {
   constructor({ id, firstName, lastName, numReserv, phone, notes }) {
     this.id = id;
@@ -13,6 +25,19 @@ class Customer {
     this.numReserv = numReserv;
     this.phone = phone;
     this.notes = notes;
+  }
+  
+  get notes(){
+    return this._notes;
+  }
+
+  set notes(note){
+    if(note){
+      this._notes = note;
+    } else{
+      this._notes = "";
+      // console.log("nice try, no falsys");
+    }
   }
 
   get fullName() {

@@ -16,6 +16,34 @@ class Reservation {
     this.notes = notes;
   }
 
+  // Getters and setters 
+
+  get numGuests(){
+    return this._numGuests;
+  }
+  
+  set numGuests(numGuests){
+    if(numGuests > 0){
+      this._numGuests = numGuests;
+    }else{
+      console.log("get rekt");
+      throw new Error("Number of guests must be greater than zero");
+    }
+  }
+  
+  get notes(){
+    return this._notes;
+  }
+
+  set notes(note){
+    if(note){
+      this._notes = note;
+    } else{
+      this._notes = "";
+      // console.log("nice try, no falsys");
+    }
+  }
+
   /** formatter for startAt */
 
   getformattedStartAt() {
