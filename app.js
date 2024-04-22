@@ -20,20 +20,20 @@ app.use(routes);
 
 /** 404 handler */
 
-// app.use(function(req, res, next) {
-//   const err = new Error("Not Found");
-//   err.status = 404;
+app.use(function(req, res, next) {
+  const err = new Error("Not Found");
+  err.status = 404;
 
-//   // pass the error to the next piece of middleware
-//   return next(err);
-// });
+  // pass the error to the next piece of middleware
+  return next(err);
+});
 
 /** general error handler */
 
-// app.use((err, req, res, next) => {
-//   res.status(err.status || 500);
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
 
-//   return res.render("error.html", { err });
-// });
+  return res.render("error.html", { err });
+});
 
 module.exports = app;
